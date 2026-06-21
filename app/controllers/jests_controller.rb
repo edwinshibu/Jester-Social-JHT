@@ -38,8 +38,7 @@ class JestsController < ApplicationController
   private
 
   def set_jest
-    # This is MUCH faster!
-    @jest = Jest.where("id = #{params[:id]}").first
+    @jest = Jest.visible_to(Current.user).find(params[:id])
   end
 
   def jest_params
